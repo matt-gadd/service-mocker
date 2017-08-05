@@ -128,7 +128,8 @@ export class MockerRouter {
   _register(method, path, callback) {
     method = method.toUpperCase();
 
-    const regex = pathToRegExp(path);
+    const keys = [];
+    const regex = pathToRegExp(path, keys);
 
     let cb;
 
@@ -146,7 +147,7 @@ export class MockerRouter {
       path,
       regex,
       callback: cb,
-      keys: regex.keys,
+      keys,
       baseURL: this.baseURL,
       isAll: method === 'ALL',
     });
